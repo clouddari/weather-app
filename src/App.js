@@ -67,7 +67,6 @@ function App() {
       </nav>
 </header>
 
-
       <div className="container">
         {error && <p className="error-message">{error}</p>}
         <div className="before-forecast">
@@ -112,29 +111,34 @@ function App() {
               {data?.current ? <p className="bold">{data.current.vis_km} km</p> : null}
               <p>Visibility</p>
             </div>
+
           </div>
         </div>
-      </div>
-
-      <h2 className='forecast-title'>3-Day Forecast</h2>
 
       <div className="forecast">
+         <h2 className='forecast-title'>3-Day Forecast</h2>
         {forecast && forecast.map((day) => (
            <div key={day.date} className="forecast-item">
                 <p className="bold">{day.date}</p>
-                <p>{day.day.condition.text}</p>
-                <img className="weather-icon" src={day.day.condition.icon} alt="weather icon" />
-                <p>Max: {day.day.maxtemp_c}°C</p>
-                <p>Min: {day.day.mintemp_c}°C</p>
-          </div>
+                  <div className="condition-icon">
+                    <p>{day.day.condition.text}</p>
+                    <img className="weather-icon" src={day.day.condition.icon} alt="weather icon" />
+                  </div>
+                  <div className="min-max">
+                    <p>Max: {day.day.maxtemp_c}°C</p>
+                    <p>Min: {day.day.mintemp_c}°C</p>
+                  </div>
+               
+       </div>
              ))}
        </div>
-
+       </div>
       <footer>
         <p>&copy; 2025 WeatherApp. All rights reserved.</p>
-        <p>Data provided by [API Name]</p>
+        <p>Data provided by weatherapi.com</p>
       </footer>
     </div>
+
   );
 }
 
